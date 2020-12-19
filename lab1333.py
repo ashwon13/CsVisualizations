@@ -32,11 +32,16 @@ xyp=[]
 j=0
 while j<len(xy):
     x,y=xy[j]
-    xp=0.05*w+0.90*w*(x-xmin)/(xmax-xmin)
-    yp=0.05*h+0.90*h*(y-ymin)/(ymax-ymin)
+    xp=(0.05*w)+(0.90*w)/(xmax-xmin)
+    yp=(0.05*w)+(0.90*w)/(ymax-ymin)
     xyp.append((xp,yp))
     j+=1
     
     
     
 cnvs.create_polygon(xyp,fill="black",outline="black")
+    
+
+   
+
+root.mainloop() 
