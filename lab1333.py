@@ -1,4 +1,4 @@
- #name:Ashwin
+#name:Ashwin
 #date:12/8/2020
 from Tkinter import Tk,Canvas
 
@@ -51,5 +51,4 @@ while j<len(xy):
     print xyp
     
 cnvs.create_polygon(xyp,fill="blue",outline="red")
-
 root.mainloop()
