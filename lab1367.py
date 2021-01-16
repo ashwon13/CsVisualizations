@@ -25,10 +25,7 @@ while position<len(data):
       #Getting Data
       x=float(data[position])
       position+=1
-      
-      
-      
-      
+
       
    except:
       stringValue=(data[position])
@@ -48,24 +45,14 @@ while position<len(data):
       #turns off the switch so that we know if we should not start a new polly
       elif stringValue !="END_One_POLY":
          stateDone="false"
-         
-         
-   
    
    try:
       #Getting Data
       y=float(data[position])
       position+=1
-      
-      
-      
 
       xy.append((x,y))
-      
-      
-            
-      
-   
+
    except:
       stringValue=(data[position])
       print stringValue
@@ -84,9 +71,6 @@ while position<len(data):
       #turns off the switch so that we know if we should not start a new polly
       elif stringValue !="END_One_POLY":
          stateDone="false"
-         
-         
-   
-   
+  
 print xy
    
