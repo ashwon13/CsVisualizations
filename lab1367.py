@@ -13,13 +13,13 @@ cnvs.pack()
 data=open("lab1366.txt").read().split()
 xy=[]
 xyp=[]
-xypSecond=[]
+xValues=[]
+yValues=[]
 position=1
 x=0
 y=0
-switch="ready"
-stateDone="ready"
-position=0
+
+
 while position<len(data):
   
       
@@ -31,36 +31,42 @@ while position<len(data):
   elif data[position]=="END_ONE_POLY":
       position+=1
       xy.append("END_ONE_POLY")
+  
   elif data[position]=="END_FILE":
       break
       
   else:
-       try:
+       
          x=float(data[position])
-   
+         xValues.append(x)
          position+=1
          y=float(data[position])
+         yValues.append(y)
          position+=1
    
          xy.append((x,y))   
          
-       except:
-            position+=1
+      
          
          
 xyp=[]
-position2=0
-while position2<len(xy):
-   if xy[position2]=="END_FILE":
+j=1
+while j<len(xy):
+   if xy[j]=="END_FILE":
       break
    
-   elif xy[position2]=="END_ONE_POLY":
-      position+=1
+   elif xy[j]=="END_ONE_POLY":
+      j+=1
       cnvs.create_polygon(xyp, fill="blue", outline="red",w=1)
       xyp = []
-   
+   elif xy[j]=="END_ALL_POLLY":
+      j+=1
+      break
+      
+      
    else:
-      x,y=xy[position2]
+      x=xValues[j]
+      y=yValues[j]
       xp=int((640/3)*x+16640)
     
       yp=int(480*(y)-18240)
@@ -70,9 +76,9 @@ while position2<len(xy):
       xp=xp+60
 
       xyp.append((xp,yp))
-      position+=1
-     
-print xyp   
+      
+      j+=1
+   
 root.mainloop()
    
    
