@@ -44,11 +44,35 @@ while position<len(data):
    
          xy.append((x,y))   
          
-        except:
+       except:
             position+=1
          
          
+xyp=[]
+position2=0
+while position2<len(xy):
+   if xy[position2]=="END_FILE":
+      break
    
-print xy
+   elif xy[position2]=="END_ONE_POLY":
+      position+=1
+      cnvs.create_polygon(xyp, fill="blue", outline="red",w=1)
+      xyp = []
+   
+   else:
+      x,y=xy[position2]
+      xp=int((640/3)*x+16640)
+    
+      yp=int(480*(y)-18240)
+      yp=480-yp
+    
+      yp=yp+220
+      xp=xp+60
+
+      xyp.append((xp,yp))
+      position+=1
+     
+print xyp   
+root.mainloop()
    
    
