@@ -1,0 +1,56 @@
+from Tkinter import Tk, Canvas
+
+w = 640
+h = 480
+top = Tk()
+C = Canvas(top, width=w, height=h, bg="yellow")
+C.pack()
+xmin = 99999999
+xmax = -9999999
+ymin = 99999999
+ymax = -9999999
+coords = open('lab313.txt').read().split()
+xy_values = []
+x_values = []
+y_values = []
+index = 1
+while index < len(coords):
+    if coords[index] == "END_FILE":
+        break
+    elif coords[index] == "END_ALL_POLY":
+        index += 1
+        break
+    elif coords[index] == "END_ONE_POLY":
+        index += 1
+        xy_values.append("END_ONE_POLY")
+    else:
+        x = float(coords[index])
+        y = float(coords[index + 1])
+        y = y * -1
+        index += 2
+        x_values.append(x)
+        y_values.append(y)
+        xy_values.append((x, y))
+        xmin = min(x, xmin)
+        xmax = max(x, xmax)
+        ymin = min(y, ymin)
+        ymax = max(y, ymax)
+point = []
+z = 1
+while z < len(xy_values):
+    if xy_values[z] == "END_FILE":
+        break
+    elif xy_values[z] == "END_ALL_POLY":
+        z += 1
+        break
+    elif xy_values[z] == "END_ONE_POLY":
+        z += 1
+        C.create_polygon(point, fill="brown", outline="black", w=1)
+        point = []
+    else:
+        x, y = xy_values[z]
+        xp = 0.05 * w + 0.90 * w * (x - xmin) / (xmax - xmin)
+        yp = 0.05 * h + 0.90 * h * (y - ymin) / (ymax - ymin)
+        point.append((xp, yp))
+        z += 1
+top.mainloop()
